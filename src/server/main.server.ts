@@ -53,7 +53,7 @@ RunService.Heartbeat.Connect(() => {
 		for (const i of $range(1, steps - 1)) {
 			const prev = points[i - 1];
 
-			const dir = i === 1 ? Vector3.zAxis : prev.sub(points[i - 2]).Unit;
+			const dir = i === 1 ? random.NextUnitVector().mul(new Vector3(1, 0, 1)).Unit : prev.sub(points[i - 2]).Unit;
 
 			const cf = CFrame.lookAt(prev, prev.add(dir));
 
