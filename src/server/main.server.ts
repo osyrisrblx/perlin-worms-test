@@ -43,7 +43,6 @@ RunService.Heartbeat.Connect(() => {
 		return math.noise(value.X, value.Y, value.Z);
 	}
 
-	const wormSeedX = createVector3Seed();
 	const wormSeedY = createVector3Seed();
 
 	function createWorm(wormNoiseOffset: number, initial: Vector3, steps: number) {
