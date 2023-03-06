@@ -9,6 +9,7 @@ const wormCount = new Setting("WormCount", 5);
 const wormLength = new Setting("WormLength", 50);
 const wormStepLength = new Setting("WormStepLength", 10);
 const wormSpreadDegY = new Setting("WormSpreadDegY", 60);
+const wormSpreadDegX = new Setting("WormSpreadDegX", 0);
 const wormScale = new Setting("WormScale", 1);
 const circleRadius = new Setting("CircleRadius", 250);
 
@@ -44,6 +45,7 @@ RunService.Heartbeat.Connect(() => {
 	}
 
 	const wormSeedY = createVector3Seed();
+	const wormSeedX = createVector3Seed();
 
 	function createWorm(wormNoiseOffset: number, initial: Vector3, steps: number) {
 		const points = [initial];
@@ -57,8 +59,9 @@ RunService.Heartbeat.Connect(() => {
 
 			const input = prev.add(Vector3.one.mul(wormNoiseOffset)).mul(wormScale.get());
 			const yRad = vectorNoise(input.add(wormSeedY)) * math.rad(wormSpreadDegY.get());
+			const xRad = vectorNoise(input.add(wormSeedX)) * math.rad(wormSpreadDegX.get());
 
-			const pos = cf.mul(CFrame.Angles(0, yRad, 0)).mul(new CFrame(0, 0, -wormStepLength.get())).Position;
+			const pos = cf.mul(CFrame.Angles(xRad, yRad, 0)).mul(new CFrame(0, 0, -wormStepLength.get())).Position;
 
 			points[i] = pos;
 
