@@ -49,7 +49,6 @@ RunService.Heartbeat.Connect(() => {
 	function createWorm(wormNoiseOffset: number, initial: Vector3, steps: number) {
 		const points = [initial];
 		// eslint-disable-next-line prefer-const
-		let current = initial;
 		for (const i of $range(1, steps - 1)) {
 			const prev = points[i - 1];
 
